@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pulse Lock</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="title">
+      <h1>PULSE LOCK</h1>
+      <p class="tagline">Lock the ring on the band. Click, tap, or press SPACE at the right instant.</p>
+    </header>
+
+    <section class="hud">
+      <div class="hud-item">
+        <span class="hud-label">Round</span>
+        <span id="roundLabel" class="hud-value">0 / 8</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Score</span>
+        <span id="scoreLabel" class="hud-value">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Last Lock</span>
+        <span id="lastLabel" class="hud-value">—</span>
+      </div>
+    </section>
+
+    <div class="stage">
+      <canvas id="game" width="480" height="480"></canvas>
+      <div id="startOverlay" class="overlay">
+        <h2>Pulse Lock</h2>
+        <p>A ring pulses outward from the center. A glowing band marks the target.</p>
+        <p>Lock it in — click/tap the stage or press <kbd>Space</kbd> — the instant the ring sits inside the band.
+           The closer to dead-center, the more points. 8 pulses per round, then it's over.</p>
+        <button id="startBtn" class="btn primary">Start Round</button>
+      </div>
+      <div id="endOverlay" class="overlay hidden">
+        <h2>Round Complete</h2>
+        <p>Final score</p>
+        <p id="finalScore" class="final-score">0</p>
+        <form id="saveForm" autocomplete="off">
+          <label for="nameInput">Name for the leaderboard</label>
+          <input id="nameInput" name="name" type="text" maxlength="20" placeholder="Your name" required />
+          <button type="submit" class="btn primary">Save Score</button>
+        </form>
+        <p id="saveStatus" class="save-status" role="status"></p>
+        <button id="restartBtn" class="btn">Play Again</button>
+      </div>
+    </div>
+
+    <section class="leaderboard">
+      <h2>High Scores</h2>
+      <ol id="leaderboardList"><li class="empty">Loading…</li></ol>
+    </section>
+
+    <footer class="howto">
+      <h3>How scoring works</h3>
+      <p>Each of the 8 pulses places a target band at a random radius. A ring expands outward from the
+         center at a steady, slightly increasing pace. The moment you lock in (click, tap, or press Space),
+         the game measures how far the ring's edge was from the exact center of that band. A perfect
+         center-lock scores 100 points for that pulse; the score falls off the farther off-center you are,
+         and locking outside the band entirely — or missing the pulse altogether — scores 0 for that pulse.
+         Your total is the sum across all 8 pulses, out of a maximum of 800.</p>
+    </footer>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

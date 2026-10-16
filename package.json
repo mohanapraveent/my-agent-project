@@ -1,0 +1,16 @@
+{
+  "name": "pulse-lock",
+  "version": "1.0.0",
+  "description": "Pulse Lock - a compact timing/reflex browser game with a persistent high-score table.",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
